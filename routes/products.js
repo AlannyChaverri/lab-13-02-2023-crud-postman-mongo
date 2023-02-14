@@ -9,12 +9,13 @@ const {
 
 const router = Router();
 
-router.get("/", productsGET);
+// router.get("/", productsGET);
+router.get("/:id", productsGET);
 
 router.post("/", productsPOST);
 
-router.put("/", productsPUT);
+router.put("/:id", productsPUT);
 
-router.delete("/", productsDELETE);
+router.delete("/:id", productsDELETE);
 
 module.exports = router;
