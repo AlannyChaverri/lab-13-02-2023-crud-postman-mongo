@@ -12,7 +12,6 @@ const {
 
 const router = Router();
 
-// router.get("/", productsGET);
 router.get("/", productsGET);
 
 router.post(

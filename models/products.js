@@ -1,4 +1,3 @@
-//Necesitamos recuperar un Schema y un modelo de Moongose
 const { Schema, model } = require("mongoose");
 
 const SchemaProduct = new Schema({
@@ -18,7 +17,7 @@ const SchemaProduct = new Schema({
   },
 
   fechaAlta: {
-    type: String,
+    type: Date,
     required: [true, "El fechaAlta es un campo requerido"],
   },
 
@@ -28,8 +27,4 @@ const SchemaProduct = new Schema({
   },
 });
 
-// SchemaProduct.methods.toJSON = function () {
-//   const { __v, descripcion, ...product } = this.toObject();
-//   return product;
-// };
 module.exports = model("product", SchemaProduct);

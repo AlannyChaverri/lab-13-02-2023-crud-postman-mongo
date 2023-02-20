@@ -3,13 +3,14 @@ const Producto = require("../models/products");
 
 const productsGET = async (req = request, res = response) => {
   try {
-    // const fecha = { fechaAlta: "14/02/2023" };
     const product = await Producto.find();
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo GET",
       product,
     });
+
+    console.log("metodo GET");
   } catch (err) {
     console.log(err);
     throw new Error("Error en el metodo GET");
@@ -30,7 +31,8 @@ const productsPOST = async (req = request, res = response) => {
 
     await producto.save();
 
-    //Retornamos el resultado de la llamada
+    console.log("metodo POST");
+
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo POST",
@@ -58,6 +60,7 @@ const productsPUT = async (req = request, res = response) => {
     };
 
     await Producto.updateOne(filter, Updated);
+    console.log("metodo PUT");
 
     res.json({
       ok: 200,
@@ -76,6 +79,7 @@ const productsDELETE = async (req = request, res = response) => {
     const filter = { _id: id };
     const product = await Producto.findOneAndDelete(filter);
 
+    console.log("metodo DELETE");
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo DELETE",
