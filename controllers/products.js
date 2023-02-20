@@ -3,9 +3,8 @@ const Producto = require("../models/products");
 
 const productsGET = async (req = request, res = response) => {
   try {
-    const fecha = { fechaAlta: "14/02/2023" };
-
-    const product = await Producto.find(fecha);
+    // const fecha = { fechaAlta: "14/02/2023" };
+    const product = await Producto.find();
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo GET",
@@ -19,8 +18,6 @@ const productsGET = async (req = request, res = response) => {
 
 const productsPOST = async (req = request, res = response) => {
   try {
-    const body = req.body;
-
     const { nombre, descripcion, precio, fechaAlta, SKU } = req.body;
 
     const producto = new Producto({
@@ -48,9 +45,19 @@ const productsPOST = async (req = request, res = response) => {
 const productsPUT = async (req = request, res = response) => {
   try {
     const { id } = req.params;
-    const { ...resto } = req.body;
+    const { nombre, descripcion, precio, fechaAlta, SKU } = req.body;
+    const filter = {
+      _id: id,
+    };
+    const Updated = {
+      nombre: nombre,
+      descripcion: descripcion,
+      precio: precio,
+      fechaAlta: fechaAlta,
+      sku: SKU,
+    };
 
-    const Updated = await Producto.findByIdAndUpdate(id, resto);
+    await Producto.updateOne(filter, Updated);
 
     res.json({
       ok: 200,
@@ -66,7 +73,8 @@ const productsPUT = async (req = request, res = response) => {
 const productsDELETE = async (req = request, res = response) => {
   try {
     const { id } = req.params;
-    const product = await Producto.findOneAndDelete(id);
+    const filter = { _id: id };
+    const product = await Producto.findOneAndDelete(filter);
 
     res.json({
       ok: 200,
