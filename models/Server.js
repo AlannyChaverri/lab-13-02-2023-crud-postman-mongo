@@ -17,6 +17,7 @@ class Server {
   listen() {
     this.app.listen(this.port, () => {
       console.log(`El servidor esta corriendo en el puerto ${this.port}`);
+      console.log(`ingrear a http://localhost:${this.port}/api/products/ `);
     });
   }
 
