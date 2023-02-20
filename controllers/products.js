@@ -3,6 +3,8 @@ const Producto = require("../models/products");
 
 const productsGET = async (req = request, res = response) => {
   try {
+    // const SKU = { SKU: "AAA-113" };
+    // const product = await Producto.find(SKU);
     const product = await Producto.find();
     res.json({
       ok: 200,
@@ -10,7 +12,7 @@ const productsGET = async (req = request, res = response) => {
       product,
     });
 
-    console.log("metodo GET");
+    // console.log("metodo GET");
   } catch (err) {
     console.log(err);
     throw new Error("Error en el metodo GET");
@@ -31,8 +33,7 @@ const productsPOST = async (req = request, res = response) => {
 
     await producto.save();
 
-    console.log("metodo POST");
-
+    // console.log("metodo POST");
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo POST",
@@ -60,8 +61,7 @@ const productsPUT = async (req = request, res = response) => {
     };
 
     await Producto.updateOne(filter, Updated);
-    console.log("metodo PUT");
-
+    // console.log("metodo PUT");
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo PUT",
@@ -78,8 +78,7 @@ const productsDELETE = async (req = request, res = response) => {
     const { id } = req.params;
     const filter = { _id: id };
     const product = await Producto.findOneAndDelete(filter);
-
-    console.log("metodo DELETE");
+    // console.log("metodo DELETE");
     res.json({
       ok: 200,
       msg: "Mensaje desde el metodo DELETE",
